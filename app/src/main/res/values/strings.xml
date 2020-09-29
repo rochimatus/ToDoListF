@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">ToDoListF</string>
+    <string name="list_title_activity">Your To Do List</string>
+    <string name="list_title_label">Your Activity</string>
+    <string name="list_desc_label">Your Description</string>
+    <string name="create_title_activity">Create To Do</string>
+    <string name="to_do_title_label">Activity To Do</string>
+    <string name="to_do_description_label">Short Description</string>
+    <string name="to_do_date_time_label">Date Time</string>
+    <string name="save_label_btn">Save</string>
+    <string name="cancel_label_btn">Cancel</string>
+    <string name="edit_title_activity">Edit To Do List</string>
+    <string name="delete_label_btn">delete</string>
+    <string name="edit_label_btn">edit</string>
+    <string name="delete_label">Are you sure to delete this?</string>
+    <string name="ask_content_desc">ask_icon</string>
+    <string name="yes_label_btn">Yes</string>
+</resources>

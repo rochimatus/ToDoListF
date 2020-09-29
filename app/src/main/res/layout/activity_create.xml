@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#EAEAEA"
+    tools:context=".CreateActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@color/colorPrimary"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:text="@string/create_title_activity"
+                android:textColor="@android:color/white"
+                android:textSize="36sp"
+                android:textStyle="bold">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="-80dp"
+            android:background="@drawable/rounded_corners_white"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/to_do_field"
+                    android:paddingHorizontal="5dp"
+                    android:text="@string/to_do_title_label"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/to_do_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:importantForAutofill="no"
+                    android:hint="@string/to_do_title_label"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/description_field"
+                    android:paddingHorizontal="5dp"
+                    android:text="@string/to_do_description_label"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/description_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textColor="#919191"
+                    android:hint="@string/to_do_description_label"
+                    android:importantForAutofill="no"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/time_field"
+                    android:paddingHorizontal="5dp"
+                    android:text="@string/to_do_date_time_label"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/time_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/to_do_date_time_label"
+                    android:importantForAutofill="no"
+                    android:inputType="datetime"
+                    android:textColor="#919191" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:layout_marginHorizontal="10sp"
+                android:layout_marginVertical="20sp"
+                android:orientation="vertical"
+                android:padding="10sp">
+
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:background="@drawable/rounded_corners_primary"
+                    android:onClick="onClickSave"
+                    android:text="@string/save_label_btn"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/cancel_buttton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corners_secondary"
+                    android:onClick="onClickCancel"
+                    android:text="@string/cancel_label_btn" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
