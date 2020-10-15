@@ -3,4 +3,21 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+
+    <!-- -->
+    <color name="prussianBlue">#1C3144</color>
+    <color name="greenBlueCrayola">#3F88C5</color>
+    <color name="verdigirls">#05A8AA</color>
+    <color name="cadetBlueCrayola">#A2AEBB</color>
+    <color name="white">#FCFCFC</color>
+    <color name="rossoCoraRed">#D00000</color>
+    <color name="selectiveYellow">#FFBA08</color>
+    <color name="shadowBlue">#7389ae</color>
+    <color name="lightPeriwinkle">#b5bad0</color>
+    <color name="opal">#b1d2c7</color>
+    <color name="gainsboro">#e0e0e2</color>
+    <color name="culturedWhite">#f8f8f8</color>
+    <color name="black">#242424</color>
+    <color name="redDanger">#ca3525</color>
 </resources>

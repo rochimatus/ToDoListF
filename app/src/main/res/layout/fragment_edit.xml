@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAEAEA"
-    tools:context=".EditActivity">
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    android:background="#EAEAEA">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,9 +10,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:background="@color/colorPrimary"
+            android:background="?attr/colorPrimary"
             android:padding="24dp">
             <TextView
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -33,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="-80dp"
-            android:background="@drawable/rounded_corners_white"
+            android:background="@drawable/rounded_corners_culturedwhite"
             android:orientation="vertical"
             android:padding="15dp">
             <LinearLayout
@@ -45,13 +41,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/to_do_field"
+                    android:labelFor="@id/title_field"
                     android:paddingHorizontal="5dp"
                     android:text="@string/list_title_label"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/to_do_field"
+                    android:id="@+id/title_field"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -66,7 +62,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
-                android:background="#FFFFFF"
                 android:orientation="vertical"
                 android:padding="15dp">
 
@@ -93,20 +88,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
-                android:background="#FFFFFF"
                 android:orientation="vertical"
                 android:padding="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/time_field"
+                    android:labelFor="@id/date_field"
                     android:paddingHorizontal="5dp"
                     android:text="@string/to_do_date_time_label"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/time_field"
+                    android:id="@+id/date_field"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -126,20 +120,20 @@
                 android:padding="10sp">
 
                 <Button
+                    android:id="@+id/bt_save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10sp"
                     android:background="@drawable/rounded_corners_primary"
                     android:text="@string/save_label_btn"
-                    android:textColor="@android:color/white"
-                    android:onClick="onClickSave"/>
+                    android:textColor="?attr/textWhiteColor"/>
 
                 <Button
+                    android:id="@+id/bt_cancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners_secondary"
-                    android:text="@string/cancel_label_btn"
-                    android:onClick="onClickCancel"/>
+                    android:text="@string/cancel_label_btn"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

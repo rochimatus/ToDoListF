@@ -6,5 +6,27 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+<!--    <style name="SoftBlue" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        <item name="colorPrimary">@color/shadowBlue</item>-->
+<!--        <item name="colorPrimaryDark">@color/queenBlue</item>-->
+<!--        <item name="tabBackgroundColor">@color/lightPeriwinkle</item>-->
+<!--        <item name="toolbarBackgroundColor">@color/queenBlue</item>-->
+<!--        <item name="textDarkColor">@color/black</item>-->
+<!--        <item name="textTabColor">@color/opal</item>-->
+<!--        <item name="textWhiteColor">@color/culturedWhite</item>-->
+<!--        <item name="detailBackground">@color/gainsboro</item>-->
+<!--&lt;!&ndash;        <item name="imageTransparentOverlay">@color/pantoneTransparent</item>&ndash;&gt;-->
+<!--    </style>-->
+    <style name="SoftBlue" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/greenBlueCrayola</item>
+        <item name="colorPrimaryDark">@color/prussianBlue</item>
+        <item name="tabBackgroundColor">@color/lightPeriwinkle</item>
+        <item name="toolbarBackgroundColor">@color/prussianBlue</item>
+        <item name="textDarkColor">@color/black</item>
+        <item name="textTabColor">@color/opal</item>
+        <item name="textWhiteColor">@color/culturedWhite</item>
+        <item name="detailBackground">@color/gainsboro</item>
+        <item name="colorAccent">@color/verdigirls</item>
+        <!--        <item name="imageTransparentOverlay">@color/pantoneTransparent</item>-->
+    </style>
 </resources>
