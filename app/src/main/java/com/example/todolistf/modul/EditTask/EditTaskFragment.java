@@ -1,4 +1,4 @@
-package com.example.todolistf.modul.create;
+package com.example.todolistf.modul.EditTask;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,26 +12,25 @@ import androidx.annotation.Nullable;
 
 import com.example.todolistf.R;
 import com.example.todolistf.base.BaseFragment;
-import com.example.todolistf.modul.home.HomeActivity;
+import com.example.todolistf.modul.Home.HomeActivity;
 
-;import java.util.BitSet;
+;
 
 /**
  * Created by fahrul on 13/03/19.
  */
 
-public class CreateFragment extends BaseFragment<CreateActivity, CreateContract.Presenter> implements CreateContract.View {
+public class EditTaskFragment extends BaseFragment<EditTaskActivity, EditTaskContract.Presenter> implements EditTaskContract.View {
 
     EditText etTitle;
     EditText etDescription;
     EditText etDate;
     Button btnCancel;
-    Button btnSave;
-
-    Button btnLogin;
+    Button btnUpdate;
+    int id;
     static final int REQUEST_CODE = 901;
 
-    public CreateFragment() {
+    public EditTaskFragment() {
     }
 
     @Nullable
@@ -39,41 +38,45 @@ public class CreateFragment extends BaseFragment<CreateActivity, CreateContract.
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_show, container, false);
-        mPresenter = new CreatePresenter(this);
+        mPresenter = new EditTaskPresenter(this);
         mPresenter.start();
 
         etTitle = fragmentView.findViewById(R.id.title_field);
         etDescription = fragmentView.findViewById(R.id.description_field);
         etDate = fragmentView.findViewById(R.id.date_field);
+        btnCancel = fragmentView.findViewById(R.id.bt_cancel);
+        btnUpdate = fragmentView.findViewById(R.id.bt_save);
 
-        btnCancel = fragmentView.findViewById(R.id.cancel_buttton);
-        btnSave = fragmentView.findViewById(R.id.save_button);
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setBtSaveClick();
-            }
-        });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 setBtCancelClick();
+            }
+        });
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setBtUpdateClick();
             }
         });
         return fragmentView;
     }
 
-    private void setBtCancelClick() {
-        redirectToHome(0);
-    }
-
-    public void setBtSaveClick(){
+    private void setBtUpdateClick() {
         String title = etTitle.getText().toString();
         String description = etDescription.getText().toString();
         String date = etDate.getText().toString();
+        mPresenter.performUpdate(id, title, description, date);
+    }
 
-        mPresenter.performStore(title, description, date);
+    public void setBtCancelClick(){
+        redirectToHome(0);
+    }
+
+    @Override
+    public void setPresenter(EditTaskContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
     @Override
@@ -82,10 +85,5 @@ public class CreateFragment extends BaseFragment<CreateActivity, CreateContract.
         intent.putExtra("status", status);
         startActivity(intent);
         activity.finish();
-    }
-
-    @Override
-    public void setPresenter(CreateContract.Presenter presenter) {
-        mPresenter = presenter;
     }
 }

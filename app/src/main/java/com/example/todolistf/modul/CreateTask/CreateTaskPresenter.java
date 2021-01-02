@@ -1,15 +1,15 @@
-package com.example.todolistf.modul.create;
+package com.example.todolistf.modul.CreateTask;
 
 /**
  * Created by fahrul on 13/03/19.
  */
 
-public class CreatePresenter implements CreateContract.Presenter{
-    private final CreateContract.View view;
+public class CreateTaskPresenter implements CreateTaskContract.Presenter{
+    private final CreateTaskContract.View view;
 
 
 
-    public CreatePresenter(CreateContract.View view) {
+    public CreateTaskPresenter(CreateTaskContract.View view) {
         this.view = view;
     }
 

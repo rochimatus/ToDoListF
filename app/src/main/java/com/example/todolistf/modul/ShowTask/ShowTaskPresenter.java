@@ -1,4 +1,4 @@
-package com.example.todolistf.modul.show;
+package com.example.todolistf.modul.ShowTask;
 
 import java.util.Date;
 
@@ -6,12 +6,12 @@ import java.util.Date;
  * Created by fahrul on 13/03/19.
  */
 
-public class ShowPresenter implements ShowContract.Presenter{
-    private final ShowContract.View view;
+public class ShowTaskPresenter implements ShowTaskContract.Presenter{
+    private final ShowTaskContract.View view;
 
 
 
-    public ShowPresenter(ShowContract.View view) {
+    public ShowTaskPresenter(ShowTaskContract.View view) {
         this.view = view;
     }
 

@@ -1,12 +1,10 @@
-package com.example.todolistf.modul.home;
+package com.example.todolistf.modul.Home;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,22 +12,18 @@ import androidx.annotation.Nullable;
 
 import com.example.todolistf.R;
 import com.example.todolistf.base.BaseFragment;
-import com.example.todolistf.modul.show.ShowActivity;
+import com.example.todolistf.modul.CreateTask.CreateTaskActivity;
+import com.example.todolistf.modul.ShowTask.ShowTaskActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-;
 
-/**
- * Created by fahrul on 13/03/19.
- */
-
-public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presenter> implements HomeContract.View {
-
+public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presenter> implements HomeContract.View, View.OnClickListener {
     View view;
     TextView tvTitle;
+    FloatingActionButton fabCreateTask;
     static final int REQUEST_CODE = 901;
 
-    public HomeFragment(int status) {
-        showMessage(status);
+    public HomeFragment(){
     }
 
     @Nullable
@@ -42,19 +36,22 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
 
         view = fragmentView.findViewById(R.id.list1);
         tvTitle = fragmentView.findViewById(R.id.title);
-        tvTitle.setText("Your To Do List");
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setViewChangeClick();
-            }
-        });
-
+        fabCreateTask = fragmentView.findViewById(R.id.fabCreateTask);
+        String text = "Your to do list";
+        tvTitle.setText(text);
+        view.setOnClickListener(this);
+        fabCreateTask.setOnClickListener(this);
         return fragmentView;
     }
 
-    public void setViewChangeClick(){
-        redirectToShow();
+    private void changeToCreateActivity() {
+        Intent intent = new Intent(activity, CreateTaskActivity.class);
+        activity.finish();
+        startActivity(intent);
+    }
+
+    public void setViewChangeClick(String id){
+        redirectToShow(id);
     }
 
     @Override
@@ -70,12 +67,19 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     }
 
     @Override
-    public void redirectToShow() {
-        Intent intent = new Intent(activity, ShowActivity.class);
+    public void redirectToShow(String id) {
+        Intent intent = new Intent(activity, ShowTaskActivity.class);
         //kode untuk mengirim id dari to do yang dipilih
         startActivity(intent);
-        activity.finish();
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == fabCreateTask.getId()) {
+            changeToCreateActivity();
+        } else if (v.getId() == view.getId()){
+            redirectToShow("0");
+        }
+    }
 }

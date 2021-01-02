@@ -1,17 +1,15 @@
-package com.example.todolistf.modul.edit;
-
-import java.util.Date;
+package com.example.todolistf.modul.EditTask;
 
 /**
  * Created by fahrul on 13/03/19.
  */
 
-public class EditPresenter implements EditContract.Presenter{
-    private final EditContract.View view;
+public class EditTaskPresenter implements EditTaskContract.Presenter{
+    private final EditTaskContract.View view;
 
 
 
-    public EditPresenter(EditContract.View view) {
+    public EditTaskPresenter(EditTaskContract.View view) {
         this.view = view;
     }
 

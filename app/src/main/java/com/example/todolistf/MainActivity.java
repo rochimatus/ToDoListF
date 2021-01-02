@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.todolistf.modul.create.CreateActivity;
+import com.example.todolistf.modul.CreateTask.CreateTaskActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+        Intent intent = new Intent(MainActivity.this, CreateTaskActivity.class);
         startActivity(intent);
     }
 }

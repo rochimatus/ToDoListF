@@ -1,4 +1,4 @@
-package com.example.todolistf.modul.edit;
+package com.example.todolistf.modul.EditTask;
 
 
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.View;
 import com.example.todolistf.base.BaseFragmentHolderActivity;
 
 
-public class EditActivity extends BaseFragmentHolderActivity {
-    EditFragment editFragment;
+public class EditTaskActivity extends BaseFragmentHolderActivity {
+    EditTaskFragment editTaskFragment;
     private final int UPDATE_REQUEST = 2019;
 
     @Override
@@ -19,8 +19,8 @@ public class EditActivity extends BaseFragmentHolderActivity {
 //        ivIcon.setImageResource(R.drawable.....);
         ivIcon.setVisibility(View.VISIBLE);
 
-        editFragment = new EditFragment();
-        setCurrentFragment(editFragment, false);
+        editTaskFragment = new EditTaskFragment();
+        setCurrentFragment(editTaskFragment, false);
 
     }
 

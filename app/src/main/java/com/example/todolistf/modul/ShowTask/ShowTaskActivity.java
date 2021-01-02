@@ -1,4 +1,4 @@
-package com.example.todolistf.modul.delete;
+package com.example.todolistf.modul.ShowTask;
 
 
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.View;
 import com.example.todolistf.base.BaseFragmentHolderActivity;
 
 
-public class DeleteActivity extends BaseFragmentHolderActivity {
-    DeleteFragment createFragment;
+public class ShowTaskActivity extends BaseFragmentHolderActivity {
+    ShowTaskFragment showTaskFragment;
     private final int UPDATE_REQUEST = 2019;
 
     @Override
@@ -16,11 +16,10 @@ public class DeleteActivity extends BaseFragmentHolderActivity {
 
         btBack.setVisibility(View.GONE);
         btOptionMenu.setVisibility(View.GONE);
-//        ivIcon.setImageResource(R.drawable.....);
         ivIcon.setVisibility(View.VISIBLE);
 
-        createFragment = new DeleteFragment();
-        setCurrentFragment(createFragment, false);
+        showTaskFragment = new ShowTaskFragment();
+        setCurrentFragment(showTaskFragment, false);
 
     }
 

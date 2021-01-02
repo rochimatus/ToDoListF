@@ -1,4 +1,4 @@
-package com.example.todolistf.modul.delete;
+package com.example.todolistf.modul.EditTask;
 
 import com.example.todolistf.base.BasePresenter;
 import com.example.todolistf.base.BaseView;
@@ -7,12 +7,12 @@ import com.example.todolistf.base.BaseView;
  * Created by fahrul on 13/03/19.
  */
 
-public interface DeleteContract {
+public interface EditTaskContract {
     interface View extends BaseView<Presenter> {
-        void redirectToProfile(String email, String password);
+        void redirectToHome(int status);
     }
 
     interface Presenter extends BasePresenter {
-        void performLogin(String email, String password);
+        void performUpdate(int id, String title, String description, String date);
     }
 }

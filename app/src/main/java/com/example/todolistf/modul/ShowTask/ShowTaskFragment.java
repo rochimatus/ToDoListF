@@ -1,4 +1,4 @@
-package com.example.todolistf.modul.show;
+package com.example.todolistf.modul.ShowTask;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,19 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.example.todolistf.R;
 import com.example.todolistf.base.BaseFragment;
-import com.example.todolistf.modul.edit.EditActivity;
-import com.example.todolistf.modul.home.HomeActivity;
+import com.example.todolistf.modul.EditTask.EditTaskActivity;
+import com.example.todolistf.modul.Home.HomeActivity;
 
 ;import java.util.Date;
 
-public class ShowFragment extends BaseFragment<ShowActivity, ShowContract.Presenter> implements ShowContract.View {
+public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskContract.Presenter> implements ShowTaskContract.View {
 
     int id;
     Button btnDone;
@@ -29,7 +28,7 @@ public class ShowFragment extends BaseFragment<ShowActivity, ShowContract.Presen
     TextView tvDescription;
     static final int REQUEST_CODE = 901;
 
-    public ShowFragment() {
+    public ShowTaskFragment() {
     }
 
     @Nullable
@@ -37,7 +36,7 @@ public class ShowFragment extends BaseFragment<ShowActivity, ShowContract.Presen
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_show, container, false);
-        mPresenter = new ShowPresenter(this);
+        mPresenter = new ShowTaskPresenter(this);
         mPresenter.start();
 
         tvTitle = fragmentView.findViewById(R.id.title);
@@ -87,7 +86,7 @@ public class ShowFragment extends BaseFragment<ShowActivity, ShowContract.Presen
     }
 
     @Override
-    public void setPresenter(ShowContract.Presenter presenter) {
+    public void setPresenter(ShowTaskContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -109,7 +108,7 @@ public class ShowFragment extends BaseFragment<ShowActivity, ShowContract.Presen
 
     @Override
     public void redirectToEdit(int todoId) {
-        Intent intent = new Intent(activity, EditActivity.class);
+        Intent intent = new Intent(activity, EditTaskActivity.class);
         intent.putExtra("id", todoId);
         startActivity(intent);
         activity.finish();

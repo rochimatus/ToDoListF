@@ -9,18 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SoftBlue"
-        android:fullBackupContent="">
-        <activity android:name=".modul.home.HomeActivity">
+        android:fullBackupContent="true">
+        <activity android:name=".modul.Home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".modul.create.CreateActivity"></activity>
-        <activity android:name=".modul.show.ShowActivity"></activity>
-        <activity android:name=".modul.edit.EditActivity"></activity>
-        <activity android:name=".modul.delete.DeleteActivity"></activity>
+        <activity android:name=".modul.CreateTask.CreateTaskActivity"></activity>
+        <activity android:name=".modul.ShowTask.ShowTaskActivity"></activity>
+        <activity android:name=".modul.EditTask.EditTaskActivity"></activity>
     </application>
 
 </manifest>

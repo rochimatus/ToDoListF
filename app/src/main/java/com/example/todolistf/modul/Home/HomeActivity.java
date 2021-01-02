@@ -1,4 +1,4 @@
-package com.example.todolistf.modul.create;
+package com.example.todolistf.modul.Home;
 
 
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.View;
 import com.example.todolistf.base.BaseFragmentHolderActivity;
 
 
-public class CreateActivity extends BaseFragmentHolderActivity {
-    CreateFragment createFragment;
+public class HomeActivity extends BaseFragmentHolderActivity {
+    HomeFragment homeFragment;
     private final int UPDATE_REQUEST = 2019;
 
     @Override
@@ -16,12 +16,11 @@ public class CreateActivity extends BaseFragmentHolderActivity {
 
         btBack.setVisibility(View.GONE);
         btOptionMenu.setVisibility(View.GONE);
-//        ivIcon.setImageResource(R.drawable.....);
         ivIcon.setVisibility(View.VISIBLE);
 
-        createFragment = new CreateFragment();
-        setCurrentFragment(createFragment, false);
+        homeFragment = new HomeFragment();
 
+        setCurrentFragment(homeFragment, false);
     }
 
 
