@@ -9,18 +9,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todolistf.R;
 import com.example.todolistf.base.BaseFragment;
+import com.example.todolistf.data.model.Task;
 import com.example.todolistf.modul.CreateTask.CreateTaskActivity;
 import com.example.todolistf.modul.ShowTask.ShowTaskActivity;
+import com.example.todolistf.utils.RecyclerViewTodoList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 
 public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presenter> implements HomeContract.View, View.OnClickListener {
-    View view;
-    TextView tvTitle;
+    RecyclerView rvTasks;
+    TextView tvTitlePage;
     FloatingActionButton fabCreateTask;
+    RecyclerViewTodoList mAdapter;
+    final String titlePage = "Your To Do List";
     static final int REQUEST_CODE = 901;
 
     public HomeFragment(){
@@ -34,14 +42,34 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
         mPresenter = new HomePresenter(this);
         mPresenter.start();
 
-        view = fragmentView.findViewById(R.id.list1);
-        tvTitle = fragmentView.findViewById(R.id.title);
-        fabCreateTask = fragmentView.findViewById(R.id.fabCreateTask);
-        String text = "Your to do list";
-        tvTitle.setText(text);
-        view.setOnClickListener(this);
-        fabCreateTask.setOnClickListener(this);
+        initView();
         return fragmentView;
+    }
+
+    private void initView() {
+        rvTasks = fragmentView.findViewById(R.id.rvTasks);
+        rvTasks.setLayoutManager(new LinearLayoutManager(activity));
+        final ArrayList<Task> data = mPresenter.getDataSet();
+        mAdapter = new RecyclerViewTodoList(data);
+        rvTasks.setAdapter(mAdapter);
+        RecyclerViewTodoList.setOnItemClickListener(new RecyclerViewTodoList.MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                String id = data.get(position).getId();
+                redirectToShow(id);
+            }
+
+            @Override
+            public void onSelected(int position, boolean isChecked) {
+                String id = data.get(position).getId();
+                System.out.println("checked " + id);
+            }
+        });
+        tvTitlePage = fragmentView.findViewById(R.id.tvTitlePage);
+        tvTitlePage.setText(titlePage);
+
+        fabCreateTask = fragmentView.findViewById(R.id.fabCreateTask);
+        fabCreateTask.setOnClickListener(this);
     }
 
     private void changeToCreateActivity() {
@@ -78,8 +106,6 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     public void onClick(View v) {
         if(v.getId() == fabCreateTask.getId()) {
             changeToCreateActivity();
-        } else if (v.getId() == view.getId()){
-            redirectToShow("0");
         }
     }
 }

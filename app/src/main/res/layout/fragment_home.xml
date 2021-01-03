@@ -1,145 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ImageView
+        android:id="@+id/ivStyleBG"
         android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvTitlePage"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="24dp"
+        android:layout_gravity="center_vertical"
+        android:text="@string/list_title_activity"
+        android:textColor="?attr/textWhiteColor"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/ivStyleBG"
+        app:layout_constraintTop_toTopOf="@id/ivStyleBG"
+        app:layout_constraintBottom_toBottomOf="@id/ivStyleBG"
+        android:layout_marginLeft="24dp" />
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_corners_culturedwhite"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitlePage"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:background="?attr/colorPrimary"
-            android:padding="24dp">
-
-            <TextView
-                android:id="@+id/title"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTasks"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/list_title_activity"
-                android:textColor="?attr/textWhiteColor"
-                android:textSize="36sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="-80dp"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="15dp">
-                <LinearLayout
-                    android:id="@+id/list1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10sp"
-                    android:background="@drawable/rounded_corners_white"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tv_description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/list_title_label"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/list_desc_label" />
-                    </LinearLayout>
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:gravity="center_horizontal|center_vertical|center"
-                        android:visibility="visible" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/list2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10sp"
-                    android:background="@drawable/rounded_corners_white"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/list_title_label"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/list_desc_label" />
-                    </LinearLayout>
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:gravity="center_horizontal|center_vertical|center"
-                        android:visibility="visible" />
-                </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                android:background="@drawable/rounded_corners_culturedwhite"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:padding="15dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/list_title_label"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:text="@string/list_desc_label" />
-                </LinearLayout>
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:checked="true"
-                    android:gravity="center_horizontal|center_vertical|center"
-                    android:visibility="visible" />
-            </LinearLayout>
-        </LinearLayout>
+                android:layout_height="wrap_content"/>
+        </ScrollView>
     </LinearLayout>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -168,4 +78,4 @@
             app:srcCompat="@android:drawable/ic_input_add"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
