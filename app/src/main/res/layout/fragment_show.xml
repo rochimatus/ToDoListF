@@ -63,7 +63,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description"
+                    android:text="@string/description_label"
                     android:textSize="12sp" />
 
                 <TextView
@@ -83,7 +83,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date Time"
+                    android:text="@string/date_time_label"
                     android:textSize="12sp" />
 
                 <TextView
@@ -96,31 +96,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="24dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
                 <Button
                     android:id="@+id/btEdit"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners_secondary"
-                    android:layout_margin="10dp"
-                    android:text="Edit"/>
-                <Button
-                    android:id="@+id/btBack"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/rounded_corners_primary"
-                    android:text="Back"/>
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/edit_label"/>
                 <Button
                     android:id="@+id/btDelete"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
                     android:background="@drawable/rounded_corners_warning"
                     android:textColor="@color/white"
-                    android:text="Delete"/>
+                    android:text="@string/delete_label_btn"/>
             </LinearLayout>
+            <Button
+                android:id="@+id/btShare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/rounded_corners_primary"
+                android:textColor="@color/white"
+                android:text="@string/share_label"/>
         </LinearLayout>
 
     </LinearLayout>

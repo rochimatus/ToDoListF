@@ -142,10 +142,31 @@ public class TaskTableHandler implements TableHandler<Task>{
     public ArrayList<Task> readAll() {
         ArrayList<Task> taskList = new ArrayList<Task>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + DatabaseContract.FeedTask.TABLE_NAME;
+//        String selectQuery = "SELECT  * FROM " + DatabaseContract.FeedTask.TABLE_NAME;
+
+        String[] projection = {
+                DatabaseContract.FeedTask._ID,
+                DatabaseContract.FeedTask.COLUMN_TITLE,
+                DatabaseContract.FeedTask.COLUMN_DATE,
+                DatabaseContract.FeedTask.COLUMN_DESCRIPTION,
+                DatabaseContract.FeedTask.COLUMN_FINISHED,
+        };
+
+        String sortOrder =
+                DatabaseContract.FeedTask.COLUMN_DATE + ", " + DatabaseContract.FeedTask.COLUMN_FINISHED + " ASC";
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        Cursor cursor = db.query(
+                DatabaseContract.FeedTask.TABLE_NAME,   // The table to query
+                projection,                             // The array of columns to return (pass null to get all)
+                null,                              // The columns for the WHERE clause
+                null,                          // The values for the WHERE clause
+                null,                          // don't group the rows
+                null,                           // don't filter by row groups
+                sortOrder                               // The sort order
+        );
+//        Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             try{

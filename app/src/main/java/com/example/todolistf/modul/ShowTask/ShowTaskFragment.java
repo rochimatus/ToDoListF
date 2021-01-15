@@ -22,16 +22,16 @@ import com.example.todolistf.modul.Home.HomeActivity;
 ;import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskContract.Presenter> implements ShowTaskContract.View {
+public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskContract.Presenter> implements ShowTaskContract.View, View.OnClickListener {
 
-    String id;
-    Button btnBack;
-    Button btnEdit;
-    Button btnDelete;
-    CheckBox cbFinished;
-    TextView tvTitle;
-    TextView tvDate;
-    TextView tvDescription;
+    private String id;
+    private Button btnShare;
+    private Button btnEdit;
+    private Button btnDelete;
+    private CheckBox cbFinished;
+    private TextView tvTitle;
+    private TextView tvDate;
+    private TextView tvDescription;
     static final int REQUEST_CODE = 901;
 
     public ShowTaskFragment() {
@@ -44,25 +44,24 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
         fragmentView = inflater.inflate(R.layout.fragment_show, container, false);
         mPresenter = new ShowTaskPresenter(this, new TaskTableHandler(getActivity()));
         mPresenter.start();
+        id = getActivity().getIntent().getStringExtra("ID");
+        mPresenter.loadData(id);
 
+        initView();
+        return fragmentView;
+    }
+
+    private void initView() {
         tvTitle = fragmentView.findViewById(R.id.tvTitle);
         tvDescription = fragmentView.findViewById(R.id.tv_description);
         tvDate = fragmentView.findViewById(R.id.tv_datetime);
         cbFinished = fragmentView.findViewById(R.id.cbFinisihed);
 
-        btnBack = fragmentView.findViewById(R.id.btBack);
+        btnShare = fragmentView.findViewById(R.id.btShare);
         btnEdit = fragmentView.findViewById(R.id.btEdit);
         btnDelete = fragmentView.findViewById(R.id.btDelete);
 
-        id = getActivity().getIntent().getStringExtra("ID");
-        mPresenter.loadData(id);
-
-        btnBack.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                setBtBackCLick();
-            }
-        });
+        btnShare.setOnClickListener(this);
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +83,6 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
                 redirectToHome(0);
             }
         });
-        return fragmentView;
     }
 
     private void setBtDeleteClick() {
@@ -94,10 +92,6 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
 
     private void setBtEditClick() {
         redirectToEdit();
-    }
-
-    private void setBtBackCLick() {
-        mPresenter.setFinishTask(true);
     }
 
     @Override
@@ -130,4 +124,21 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
         activity.finish();
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == btnShare.getId()) {
+            shareTask();
+        }
+    }
+
+    public void shareTask() {
+        String data = mPresenter.shareTask();
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, data);
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+    }
 }

@@ -15,11 +15,13 @@ public interface ShowTaskContract {
         void showData(Task task);
         void redirectToHome(int status);
         void redirectToEdit();
+        void shareTask();
     }
 
     interface Presenter extends BasePresenter {
         void loadData(String id);
         void deleteData();
         void setFinishTask(boolean isFinished);
+        String shareTask();
     }
 }

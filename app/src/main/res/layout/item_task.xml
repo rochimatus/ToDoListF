@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10sp"
-    android:padding="12dp"
+    android:padding="8dp"
     android:gravity="center_horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto">
         <LinearLayout
@@ -29,6 +28,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/list_desc_label" />
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date_time" />
         </LinearLayout>
 
         <CheckBox
@@ -40,5 +45,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#FF3C3C3C"
+        android:layout_marginHorizontal="2dp"
+        android:layout_marginVertical="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTask"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,6 +82,12 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
                 System.out.println("checked " + id);
                 mPresenter.setDoneTask(id, isChecked);
             }
+
+            @Override
+            public void onLongClick(int position, View v) {
+                String id = data.get(position).getId();
+                System.out.println("LONGCLICKED " + id);
+            }
         });
     }
 

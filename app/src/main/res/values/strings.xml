@@ -18,4 +18,17 @@
     <string name="yes_label_btn">Yes</string>
     <string name="email">\@example.com</string>
     <string name="logout">Logout</string>
+    <string name="date_time">Date Time</string>
+    <string name="description_label">Description</string>
+    <string name="date_time_label">Date Time</string>
+    <string name="edit_label">Edit</string>
+    <string name="share_label">Share</string>
+    <string name="register_label">REGISTER</string>
+    <string name="password_konfirmasi_anda">Password Konfirmasi Anda</string>
+    <string name="another_method_label">Atau Sign In dengan:</string>
+    <string name="dont_have_account_label">Belum memiliki akun?</string>
+    <string name="daftar_label">Daftar</string>
+    <string name="login_label">LOGIN</string>
+    <string name="password_anda_label">Password Anda</string>
+    <string name="email_anda_label">Email Anda</string>
 </resources>
