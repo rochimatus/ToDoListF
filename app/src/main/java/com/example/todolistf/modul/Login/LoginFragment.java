@@ -122,6 +122,6 @@ public class LoginFragment extends BaseFragment<LoginActivity, LoginContract.Pre
 
     @Override
     public void makeToast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 }

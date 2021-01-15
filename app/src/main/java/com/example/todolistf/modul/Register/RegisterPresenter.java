@@ -41,13 +41,14 @@ public class RegisterPresenter implements RegisterContract.Presenter{
                                 if (task.isSuccessful()) {
                                     String idToken = task.getResult().getToken();
                                     sessionRepository.setSessionData(new User(user.getEmail(), idToken));
+                                    view.makeToast("Sukses Melakukan Registrasi");
+                                    view.showSuccess();
                                 } else {
                                     System.out.println(task.getException());
                                 }
                             }
                         });
-                        view.makeToast("Sukses Melakukan Registrasi");
-                        view.showSuccess();
+
                     } else {
                         String errorMessage = task.getException().getMessage();
                         view.makeToast(errorMessage);

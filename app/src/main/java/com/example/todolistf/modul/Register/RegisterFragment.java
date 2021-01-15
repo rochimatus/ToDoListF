@@ -62,7 +62,7 @@ public class RegisterFragment extends BaseFragment<RegisterActivity, RegisterCon
 
     @Override
     public void makeToast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
