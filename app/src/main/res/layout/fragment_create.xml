@@ -44,13 +44,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/to_do_field"
+                    android:labelFor="@id/etToDo"
                     android:paddingHorizontal="5dp"
                     android:text="@string/to_do_title_label"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/to_do_field"
+                    android:id="@+id/etToDo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -71,13 +71,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/description_field"
+                    android:labelFor="@id/etDescription"
                     android:paddingHorizontal="5dp"
                     android:text="@string/to_do_description_label"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/description_field"
+                    android:id="@+id/etDescription"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -97,20 +97,21 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/time_field"
+                    android:labelFor="@id/etDate"
                     android:paddingHorizontal="5dp"
                     android:text="@string/to_do_date_time_label"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/time_field"
+                    android:id="@+id/etDate"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:focusable="false"
                     android:hint="@string/to_do_date_time_label"
                     android:importantForAutofill="no"
-                    android:inputType="datetime"
+                    android:inputType="date|datetime|time"
                     android:textColor="#919191" />
             </LinearLayout>
 
@@ -123,7 +124,7 @@
                 android:padding="10sp">
 
                 <Button
-                    android:id="@+id/save_button"
+                    android:id="@+id/btSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10sp"
@@ -133,7 +134,7 @@
                     android:textColor="@android:color/white" />
 
                 <Button
-                    android:id="@+id/cancel_buttton"
+                    android:id="@+id/btCancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corners_secondary"

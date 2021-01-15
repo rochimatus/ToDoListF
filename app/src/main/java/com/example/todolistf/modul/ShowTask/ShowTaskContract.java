@@ -2,6 +2,7 @@ package com.example.todolistf.modul.ShowTask;
 
 import com.example.todolistf.base.BasePresenter;
 import com.example.todolistf.base.BaseView;
+import com.example.todolistf.data.model.Task;
 
 import java.util.Date;
 
@@ -11,14 +12,14 @@ import java.util.Date;
 
 public interface ShowTaskContract {
     interface View extends BaseView<Presenter> {
-        void showData(int id, String title, String description, Date date);
+        void showData(Task task);
         void redirectToHome(int status);
-        void redirectToEdit(int todoId);
+        void redirectToEdit();
     }
 
     interface Presenter extends BasePresenter {
-        void performData(int todoId);
-        void deleteData(int todoId);
-        void doneToDo(int todoId);
+        void loadData(String id);
+        void deleteData();
+        void setFinishTask(boolean isFinished);
     }
 }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.todolistf.R;
 import com.example.todolistf.base.BaseFragment;
 import com.example.todolistf.data.model.Task;
+import com.example.todolistf.data.source.local.TaskTableHandler;
 import com.example.todolistf.modul.CreateTask.CreateTaskActivity;
 import com.example.todolistf.modul.ShowTask.ShowTaskActivity;
 import com.example.todolistf.utils.RecyclerViewTodoList;
@@ -31,15 +32,12 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     final String titlePage = "Your To Do List";
     static final int REQUEST_CODE = 901;
 
-    public HomeFragment(){
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
-        mPresenter = new HomePresenter(this);
+        mPresenter = new HomePresenter(this, new TaskTableHandler(getContext()));
         mPresenter.start();
 
         initView();
@@ -47,9 +45,19 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     }
 
     private void initView() {
+
+        tvTitlePage = fragmentView.findViewById(R.id.tvTitlePage);
+        tvTitlePage.setText(titlePage);
+
+        fabCreateTask = fragmentView.findViewById(R.id.fabCreateTask);
+        fabCreateTask.setOnClickListener(this);
+
         rvTasks = fragmentView.findViewById(R.id.rvTasks);
         rvTasks.setLayoutManager(new LinearLayoutManager(activity));
-        final ArrayList<Task> data = mPresenter.getDataSet();
+        mPresenter.getDataSet();
+    }
+
+    public void showData(final ArrayList<Task> data) {
         mAdapter = new RecyclerViewTodoList(data);
         rvTasks.setAdapter(mAdapter);
         RecyclerViewTodoList.setOnItemClickListener(new RecyclerViewTodoList.MyClickListener() {
@@ -63,23 +71,9 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
             public void onSelected(int position, boolean isChecked) {
                 String id = data.get(position).getId();
                 System.out.println("checked " + id);
+                mPresenter.setDoneTask(id, isChecked);
             }
         });
-        tvTitlePage = fragmentView.findViewById(R.id.tvTitlePage);
-        tvTitlePage.setText(titlePage);
-
-        fabCreateTask = fragmentView.findViewById(R.id.fabCreateTask);
-        fabCreateTask.setOnClickListener(this);
-    }
-
-    private void changeToCreateActivity() {
-        Intent intent = new Intent(activity, CreateTaskActivity.class);
-        activity.finish();
-        startActivity(intent);
-    }
-
-    public void setViewChangeClick(String id){
-        redirectToShow(id);
     }
 
     @Override
@@ -88,16 +82,15 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     }
 
     @Override
-    public void showMessage(int status) {
-        //proses cek status dan message
-        Toast toast = Toast.makeText(activity, R.string.status_toast, Toast.LENGTH_SHORT);
-        toast.show();
+    public void redirectCreateTask() {
+        Intent intent = new Intent(activity, CreateTaskActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void redirectToShow(String id) {
         Intent intent = new Intent(activity, ShowTaskActivity.class);
-        //kode untuk mengirim id dari to do yang dipilih
+        intent.putExtra("ID", id);
         startActivity(intent);
     }
 
@@ -105,7 +98,13 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     @Override
     public void onClick(View v) {
         if(v.getId() == fabCreateTask.getId()) {
-            changeToCreateActivity();
+            redirectCreateTask();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.getDataSet();
     }
 }

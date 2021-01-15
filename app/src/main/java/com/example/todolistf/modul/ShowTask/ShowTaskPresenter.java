@@ -1,5 +1,8 @@
 package com.example.todolistf.modul.ShowTask;
 
+import com.example.todolistf.data.model.Task;
+import com.example.todolistf.data.source.local.TableHandler;
+
 import java.util.Date;
 
 /**
@@ -8,37 +11,31 @@ import java.util.Date;
 
 public class ShowTaskPresenter implements ShowTaskContract.Presenter{
     private final ShowTaskContract.View view;
+    private TableHandler tableHandler;
+    private Task task;
 
-
-
-    public ShowTaskPresenter(ShowTaskContract.View view) {
+    public ShowTaskPresenter(ShowTaskContract.View view, TableHandler tableHandler) {
         this.view = view;
+        this.tableHandler = tableHandler;
     }
 
     @Override
     public void start() {}
 
     @Override
-    public void performData(final int todoId){
-        //proses query data
-        //tampilkan hasil query
-        view.showData(todoId, "My Title", "My Description", new Date(2020-9-11));
+    public void loadData(String id){
+        task = (Task) tableHandler.readById(id);
+        view.showData(task);
     }
 
     @Override
-    public void deleteData(int todoId) {
-        //proses delete
-
-        final int deleted = 9999;
-        view.redirectToHome(deleted);
+    public void deleteData() {
+        tableHandler.delete(task);
     }
 
     @Override
-    public void doneToDo(int todoId) {
-        //proses update to do list
-
-        final int updated = 1001;
-        view.redirectToHome(updated);
+    public void setFinishTask(boolean isFinished) {
+        task.setFinished(isFinished);
+        tableHandler.update(task);
     }
-
 }

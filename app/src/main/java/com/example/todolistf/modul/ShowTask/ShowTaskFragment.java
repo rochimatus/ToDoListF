@@ -6,23 +6,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.example.todolistf.R;
 import com.example.todolistf.base.BaseFragment;
+import com.example.todolistf.data.model.Task;
+import com.example.todolistf.data.source.local.TaskTableHandler;
 import com.example.todolistf.modul.EditTask.EditTaskActivity;
 import com.example.todolistf.modul.Home.HomeActivity;
 
-;import java.util.Date;
+;import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskContract.Presenter> implements ShowTaskContract.View {
 
-    int id;
-    Button btnDone;
+    String id;
+    Button btnBack;
     Button btnEdit;
     Button btnDelete;
+    CheckBox cbFinished;
     TextView tvTitle;
     TextView tvDate;
     TextView tvDescription;
@@ -36,23 +42,25 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_show, container, false);
-        mPresenter = new ShowTaskPresenter(this);
+        mPresenter = new ShowTaskPresenter(this, new TaskTableHandler(getActivity()));
         mPresenter.start();
 
-        tvTitle = fragmentView.findViewById(R.id.title);
+        tvTitle = fragmentView.findViewById(R.id.tvTitle);
         tvDescription = fragmentView.findViewById(R.id.tv_description);
         tvDate = fragmentView.findViewById(R.id.tv_datetime);
+        cbFinished = fragmentView.findViewById(R.id.cbFinisihed);
 
-        btnDone = fragmentView.findViewById(R.id.bt_done);
-        btnEdit = fragmentView.findViewById(R.id.bt_edit);
-        btnDelete = fragmentView.findViewById(R.id.bt_delete);
+        btnBack = fragmentView.findViewById(R.id.btBack);
+        btnEdit = fragmentView.findViewById(R.id.btEdit);
+        btnDelete = fragmentView.findViewById(R.id.btDelete);
 
-        mPresenter.performData(0);
+        id = getActivity().getIntent().getStringExtra("ID");
+        mPresenter.loadData(id);
 
-        btnDone.setOnClickListener(new View.OnClickListener(){
+        btnBack.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                setBtDoneCLick();
+                setBtBackCLick();
             }
         });
 
@@ -69,20 +77,27 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
                 setBtDeleteClick();
             }
         });
-
+        cbFinished.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mPresenter.setFinishTask(isChecked);
+                redirectToHome(0);
+            }
+        });
         return fragmentView;
     }
 
     private void setBtDeleteClick() {
-        mPresenter.deleteData(id);
+        mPresenter.deleteData();
+        activity.finish();
     }
 
     private void setBtEditClick() {
-        redirectToEdit(id);
+        redirectToEdit();
     }
 
-    private void setBtDoneCLick() {
-        mPresenter.doneToDo(id);
+    private void setBtBackCLick() {
+        mPresenter.setFinishTask(true);
     }
 
     @Override
@@ -91,11 +106,12 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
     }
 
     @Override
-    public void showData(int id, String title, String description, Date date) {
-        this.id = id;
-        tvTitle.setText(title);
-        tvDate.setText(date.toString());
-        tvDescription.setText(description);
+    public void showData(Task task) {
+        tvTitle.setText(task.getTitle());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        tvDate.setText(simpleDateFormat.format(task.getDate()));
+        tvDescription.setText(task.getDescription());
+        cbFinished.setChecked(task.isFinished());
     }
 
     @Override
@@ -107,12 +123,11 @@ public class ShowTaskFragment extends BaseFragment<ShowTaskActivity, ShowTaskCon
     }
 
     @Override
-    public void redirectToEdit(int todoId) {
+    public void redirectToEdit() {
         Intent intent = new Intent(activity, EditTaskActivity.class);
-        intent.putExtra("id", todoId);
+        intent.putExtra("ID", id);
         startActivity(intent);
         activity.finish();
     }
-
 
 }

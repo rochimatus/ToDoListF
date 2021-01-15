@@ -12,12 +12,13 @@ import java.util.ArrayList;
 
 public interface HomeContract {
     interface View extends BaseView<Presenter> {
-        void showMessage(int status);
+        void redirectCreateTask();
         void redirectToShow(String id);
+        void showData(ArrayList<Task> data);
     }
 
     interface Presenter extends BasePresenter {
-        ArrayList<Task> getDataSet();
-        void setDoneTask(String id);
+        void getDataSet();
+        void setDoneTask(String id, boolean isChecked);
     }
 }

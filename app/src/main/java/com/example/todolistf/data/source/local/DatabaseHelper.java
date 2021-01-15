@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + DatabaseContract.FeedTask.TABLE_NAME + " (" +
                     DatabaseContract.FeedTask._ID + " INTEGER PRIMARY KEY, " +
                     DatabaseContract.FeedTask.COLUMN_TITLE + " TEXT, " +
-                    DatabaseContract.FeedTask.COLUMN_DATE + " DATE, " +
+                    DatabaseContract.FeedTask.COLUMN_DATE + " TEXT, " +
                     DatabaseContract.FeedTask.COLUMN_DESCRIPTION + " TEXT, " +
                     DatabaseContract.FeedTask.COLUMN_FINISHED + " INT )";
 
