@@ -1,14 +1,16 @@
 package com.example.todolistf.modul.Home;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +18,9 @@ import com.example.todolistf.R;
 import com.example.todolistf.base.BaseFragment;
 import com.example.todolistf.data.model.Task;
 import com.example.todolistf.data.source.local.TaskTableHandler;
+import com.example.todolistf.data.source.session.UserSessionRepository;
 import com.example.todolistf.modul.CreateTask.CreateTaskActivity;
+import com.example.todolistf.modul.Login.LoginActivity;
 import com.example.todolistf.modul.ShowTask.ShowTaskActivity;
 import com.example.todolistf.utils.RecyclerViewTodoList;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,21 +35,25 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     RecyclerViewTodoList mAdapter;
     final String titlePage = "Your To Do List";
     static final int REQUEST_CODE = 901;
+    String email;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         fragmentView = inflater.inflate(R.layout.fragment_home, container, false);
-        mPresenter = new HomePresenter(this, new TaskTableHandler(getContext()));
+        mPresenter = new HomePresenter(this, new TaskTableHandler(getContext()), new UserSessionRepository(getActivity()));
         mPresenter.start();
 
         initView();
         return fragmentView;
     }
 
-    private void initView() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    private void initView() {
         tvTitlePage = fragmentView.findViewById(R.id.tvTitlePage);
         tvTitlePage.setText(titlePage);
 
@@ -55,6 +63,7 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
         rvTasks = fragmentView.findViewById(R.id.rvTasks);
         rvTasks.setLayoutManager(new LinearLayoutManager(activity));
         mPresenter.getDataSet();
+
     }
 
     public void showData(final ArrayList<Task> data) {
@@ -77,6 +86,11 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     }
 
     @Override
+    public void performLogout() {
+        mPresenter.performLogout();
+    }
+
+    @Override
     public void setPresenter(HomeContract.Presenter presenter) {
         mPresenter = presenter;
     }
@@ -94,6 +108,13 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
         startActivity(intent);
     }
 
+    @Override
+    public void redirectLogin() {
+        Intent intent = new Intent(activity, LoginActivity.class);
+        startActivity(intent);
+        activity.finish();
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -106,5 +127,9 @@ public class HomeFragment extends BaseFragment<HomeActivity, HomeContract.Presen
     public void onResume() {
         super.onResume();
         mPresenter.getDataSet();
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

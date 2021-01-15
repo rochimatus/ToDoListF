@@ -14,11 +14,15 @@ public interface HomeContract {
     interface View extends BaseView<Presenter> {
         void redirectCreateTask();
         void redirectToShow(String id);
+        void redirectLogin();
         void showData(ArrayList<Task> data);
+        void performLogout();
+        void setEmail(String email);
     }
 
     interface Presenter extends BasePresenter {
         void getDataSet();
         void setDoneTask(String id, boolean isChecked);
+        void performLogout();
     }
 }

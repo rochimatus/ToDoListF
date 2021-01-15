@@ -16,4 +16,6 @@
     <string name="delete_label">Are you sure to delete this?</string>
     <string name="ask_content_desc">ask_icon</string>
     <string name="yes_label_btn">Yes</string>
+    <string name="email">\@example.com</string>
+    <string name="logout">Logout</string>
 </resources>

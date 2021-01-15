@@ -1,7 +1,11 @@
 package com.example.todolistf.modul.Home;
 
 import com.example.todolistf.data.model.Task;
+import com.example.todolistf.data.model.User;
 import com.example.todolistf.data.source.local.TableHandler;
+import com.example.todolistf.data.source.session.SessionRepository;
+import com.example.todolistf.data.source.session.UserSessionRepository;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -12,17 +16,20 @@ import java.util.ArrayList;
 public class HomePresenter implements HomeContract.Presenter{
     private final HomeContract.View view;
     private final TableHandler tableHandler;
+    private final SessionRepository sessionRepository;
+    private final FirebaseAuth mAuth;
 
-
-
-    public HomePresenter(HomeContract.View view, TableHandler tableHandler) {
+    public HomePresenter(HomeContract.View view, TableHandler tableHandler, SessionRepository sessionRepository) {
         this.view = view;
         this.tableHandler = tableHandler;
+        this.sessionRepository = sessionRepository;
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void start() {
-
+        String email = ((User)sessionRepository.getSessionData()).getEmail();
+        view.setEmail(email);
     }
 
 
@@ -38,5 +45,12 @@ public class HomePresenter implements HomeContract.Presenter{
 
         chosenTask.setFinished(isChecked);
         tableHandler.update(chosenTask);
+    }
+
+    @Override
+    public void performLogout() {
+        sessionRepository.destroy();
+        mAuth.signOut();
+        view.redirectLogin();
     }
 }
